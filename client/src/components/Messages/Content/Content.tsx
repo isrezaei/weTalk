@@ -1,13 +1,13 @@
 import { Text, VStack } from "@gluestack-ui/themed";
 
-const Content = ({ users: { username } }) => {
+const Content = ({ prev_message , users: { username} }) => {
   return (
     <VStack>
       <Text bold={true} fontSize={"$md"}>
         {username}
       </Text>
-      <Text fontSize={"$sm"} numberOfLines={1}>
-        This is Content of message!
+      <Text fontSize={"$sm"}>
+          {prev_message}
       </Text>
     </VStack>
   );

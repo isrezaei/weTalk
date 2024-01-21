@@ -1,11 +1,21 @@
 import { View } from "@gluestack-ui/themed";
 import SignIn from "../../src/components/Authentication/SignIn/SignIn";
+import { Stack } from "expo-router";
+import {KeyboardAvoidingView, SafeAreaView} from "react-native";
 
 const Login = () => {
   return (
-    <View flex={1}>
-      <SignIn />
-    </View>
+
+      <SafeAreaView style={{ flex: 1, alignItems : "center"}}>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
+
+            <SignIn />
+
+      </SafeAreaView>
   );
 };
 

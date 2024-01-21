@@ -1,9 +1,8 @@
-import { Button, ButtonText, HStack } from "@gluestack-ui/themed";
-import { router, Stack } from "expo-router";
+import {Button, ButtonText, HStack} from "@gluestack-ui/themed";
+import {Redirect, Stack} from "expo-router";
 import GluestackProvider from "../src/GluestackProvider";
-import useSession, { TSession } from "../hooks/useSession";
-import { mutate } from "swr";
-import { ExpoProvider } from "expo";
+import useSession, {TSession} from "../hooks/useSession";
+import {mutate} from "swr";
 
 const Layout = () => {
   const { session, error }: TSession = useSession();
@@ -20,6 +19,7 @@ const Layout = () => {
     return await mutate("api/checkVerify");
   };
 
+
   return (
     <GluestackProvider>
       <Stack>
@@ -28,36 +28,22 @@ const Layout = () => {
           options={{
             title: "Chats",
             headerStyle: {
-              backgroundColor: "#e5e5e5",
+              backgroundColor: "#ffffff",
             },
             headerTintColor: "#232323",
             headerTitleStyle: {
               fontWeight: "bold",
             },
+            headerBackVisible : false,
+            headerShadowVisible : false,
+            headerShown : !!session?.user,
             headerRight: () => (
               <HStack space={"sm"}>
-                {!session?.user ? (
-                  <>
-                    <Button
-                      size={"sm"}
-                      action={"positive"}
-                      onPress={() => router.push("/signup")}
-                    >
-                      <ButtonText>signup</ButtonText>
-                    </Button>
-                    <Button
-                      size={"sm"}
-                      action={"secondary"}
-                      onPress={() => router.push("/login")}
-                    >
-                      <ButtonText>login</ButtonText>
-                    </Button>
-                  </>
-                ) : (
+                {session?.user &&
                   <Button size={"sm"} action={"negative"} onPress={logout}>
                     <ButtonText>logout</ButtonText>
                   </Button>
-                )}
+                }
               </HStack>
             ),
           }}

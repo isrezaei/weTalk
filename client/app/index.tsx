@@ -1,22 +1,19 @@
 import {
   View,
   ScrollView,
-  VStack,
-  Button,
-  ButtonText,
-  HStack,
 } from "@gluestack-ui/themed";
 import Rooms from "../src/components/Messages/Rooms";
 import Footer from "../src/components/Footer/Footer";
 import SearchButton from "../src/components/SearchBar/SearchButton";
-import { useEffect } from "react";
-import { socket } from "../utils/(INIT)socket";
+import useSession, {TSession} from "../hooks/useSession";
+import Login from "./(authentication)/login";
+import {useEffect} from "react";
+import {Redirect, router} from "expo-router";
+import {StatusBar} from "react-native";
 const index = () => {
-  useEffect(() => {
-    //?Connect user to socket
-    socket.connect();
-    return () => socket.disconnect();
-  }, []);
+
+  const {session} : TSession = useSession()
+
 
   return (
     <View
@@ -24,13 +21,21 @@ const index = () => {
       p={"$2"}
       sx={{ _dark: { bg: "$trueGray900" }, _light: { bg: "$white" } }}
     >
-      <ScrollView flex={1}>
-        <SearchButton />
-        <Rooms />
-      </ScrollView>
-      <View>
-        <Footer />
-      </View>
+      {
+        session?.user ?
+            <>
+              <ScrollView flex={1}>
+                <SearchButton />
+                <Rooms />
+              </ScrollView>
+              <View>
+                <Footer />
+              </View>
+            </>
+            :
+            <Redirect href={"/login"}/>
+
+      }
     </View>
   );
 };
