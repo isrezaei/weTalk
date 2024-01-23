@@ -15,6 +15,7 @@ const RoomsHeader = ({username}) => {
                     backgroundColor: "#ffffff",
                 },
                 headerTintColor: "#ce5050",
+                headerShadowVisible : false,
                 headerTransparent: false,
                 headerTitleAlign: "left",
                 headerBackVisible: false,

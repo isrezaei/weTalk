@@ -28,14 +28,18 @@ const Footer = () => {
         </TouchableOpacity>
       </HStack>
 
-      <HStack space={"md"} alignItems={"center"}>
-        <Text size={"sm"} bold={true}>
-          {session?.user.username}
-        </Text>
-        <Avatar size={"sm"} bg={"$emerald200"}>
-          <AvatarFallbackText>{session?.user.username}</AvatarFallbackText>
-        </Avatar>
-      </HStack>
+
+      <TouchableOpacity>
+        <HStack bg={"#F5F5F5"} rounded={"$xl"} p={"$2"} space={"md"} alignItems={"center"}>
+          <Text size={"sm"} bold={true}>
+            {session?.user.username}
+          </Text>
+          <Avatar size={"sm"} bg={"$emerald200"}>
+            <AvatarFallbackText>{session?.user.username}</AvatarFallbackText>
+          </Avatar>
+        </HStack>
+      </TouchableOpacity>
+
     </HStack>
   );
 };

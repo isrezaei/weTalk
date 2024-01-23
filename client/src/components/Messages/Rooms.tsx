@@ -41,70 +41,36 @@ const Rooms = () => {
 
   return (
     <>
+      <ScrollView flex={1}>
+        {rooms?.data?.map((rooms, i) => (
+          <TouchableOpacity
+            key={rooms?.id}
+            onPress={() =>
+              router.push({
+                pathname: `/room/${rooms?.id}`,
+                params: {
+                  username: rooms?.users?.username,
+                  avatar: rooms?.users?.avatar,
+                },
+              })
+            }
+          >
+            <HStack
+              w={"$full"}
 
-      <SimpleGrid
-          itemDimension={130}
-          data={rooms?.data}
-          listKey = {({ item }) => item?.id}
-          renderItem={({ item  : rooms}) => (
-              <TouchableOpacity
-                  key={rooms?.id}
-                  onPress={() =>
-                      router.push({
-                        pathname: `/room/${rooms?.id}`,
-                        params: {
-                          username: rooms?.users?.username,
-                          avatar: rooms?.users?.avatar,
-                        },
-                      })
-                  }
-              >
-                <VStack
-                    sx={{ height: 200, overflow: 'hidden' }}
-                    bg={"$coolGray100"}
-                    p={"$3"}
-                    rounded={"$lg"}
-                    space={"sm"}
-                >
-                  <Identity {...rooms} />
-                  <Divider orientation={"horizontal"} />
-                  <Content {...rooms} />
-                </VStack>
-              </TouchableOpacity>
-
-          )}
-      />
-
-      {/*<ScrollView flex={1}>*/}
-      {/*  {rooms?.data?.map((rooms, i) => (*/}
-      {/*    <TouchableOpacity*/}
-      {/*      key={rooms?.id}*/}
-      {/*      onPress={() =>*/}
-      {/*        router.push({*/}
-      {/*          pathname: `/room/${rooms?.id}`,*/}
-      {/*          params: {*/}
-      {/*            username: rooms?.users?.username,*/}
-      {/*            avatar: rooms?.users?.avatar,*/}
-      {/*          },*/}
-      {/*        })*/}
-      {/*      }*/}
-      {/*    >*/}
-      {/*      <HStack*/}
-      {/*        w={"$full"}*/}
-      {/*        bg={"$coolGray100"}*/}
-      {/*        p={"$3"}*/}
-      {/*        my={"$1"}*/}
-      {/*        space={"sm"}*/}
-      {/*        rounded={"$lg"}*/}
-      {/*        alignItems={"center"}*/}
-      {/*      >*/}
-      {/*        <Identity {...rooms} />*/}
-      {/*        <Divider orientation={"vertical"} />*/}
-      {/*        <Content {...rooms} />*/}
-      {/*      </HStack>*/}
-      {/*    </TouchableOpacity>*/}
-      {/*  ))}*/}
-      {/*</ScrollView>*/}
+              p={"$3"}
+              my={"$1"}
+              space={"sm"}
+              rounded={"$lg"}
+              alignItems={"center"}
+            >
+              <Identity {...rooms} />
+              <Divider orientation={"vertical"} />
+              <Content {...rooms} />
+            </HStack>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </>
   );
 };

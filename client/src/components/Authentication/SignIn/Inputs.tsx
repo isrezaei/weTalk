@@ -18,7 +18,7 @@ const Inputs = ({placeholder, type, setLoginInfo, name, icons}: TInputs) => {
                     borderRadius: 0,
                     borderWidth: 0,
                     height: 70,
-                    backgroundColor: "#e7e7e7"
+                    backgroundColor: "#efefef"
                 }}
                 size={"sm"}>
                 <InputSlot pl="$3">

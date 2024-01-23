@@ -13,7 +13,7 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {signUpSchema} from "../SignUp/Schema";
 import {useEffect, useState} from "react";
-import {Alert} from "react-native";
+import {Alert, SafeAreaView} from "react-native";
 import {router} from "expo-router";
 import {mutate} from "swr";
 import useSession, {TSession} from "../../../../hooks/useSession";
@@ -85,18 +85,20 @@ const SignIn = () => {
 
             if (response.status === 400) {
                 toast.show({
-                    placement: "bottom",
+                    placement: "bottom left",
                     render: ({ id }) => {
                         const toastId = "toast-" + id
                         return (
-                            <Toast nativeID={toastId} action="error" variant="accent">
-                                <VStack space="xs">
-                                    <ToastTitle>Oops</ToastTitle>
-                                    <ToastDescription>
-                                        {result?.message}
-                                    </ToastDescription>
-                                </VStack>
-                            </Toast>
+                            <SafeAreaView>
+                                <Toast nativeID={toastId} action="error" variant="accent">
+                                    <VStack space="xs">
+                                        <ToastTitle>Oops</ToastTitle>
+                                        <ToastDescription>
+                                            {result?.message}
+                                        </ToastDescription>
+                                    </VStack>
+                                </Toast>
+                            </SafeAreaView>
                         )
                     },
                 })
@@ -112,7 +114,7 @@ const SignIn = () => {
     };
 
     return (
-        <View position={"relative"}>
+        <View position={"relative"} >
 
 
             <VStack flex={1} justifyContent={"center"} p={"$4"} space={"xl"}>
@@ -120,7 +122,7 @@ const SignIn = () => {
                 <VStack space={"md"}>
 
                     <View>
-                        <Text sx={{lineHeight: 60}} size={"6xl"} bold>
+                        <Text  size={"6xl"} bold>
                             Welcome
                         </Text>
                         <Text sx={{lineHeight: 60}} size={"6xl"} bold>

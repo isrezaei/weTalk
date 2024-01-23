@@ -6,7 +6,7 @@ const Content = ({ prev_message , users: { username} }) => {
       <Text bold={true} fontSize={"$md"}>
         {username}
       </Text>
-      <Text fontSize={"$sm"}>
+      <Text numberOfLines={1} fontSize={"$sm"}>
           {prev_message}
       </Text>
     </VStack>

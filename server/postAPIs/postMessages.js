@@ -4,11 +4,12 @@ const _ = require("lodash");
 const router = express.Router();
 
 const postMessagesQuery = (reqBody) => ({
-  text: "INSERT INTO messages(id, context, created_at, user_id, room_id , files_url ) VALUES($1, $2, $3, $4 ,$5 , $6) RETURNING *",
-  values: [...Object.values(reqBody)],
+  text: "INSERT INTO messages(id, context, created_at, user_id, room_id , msg_type ) VALUES($1, $2, $3, $4 ,$5 , $6) RETURNING *",
+  values: [reqBody._id , reqBody[reqBody.msg_type] , reqBody.createdAt , reqBody.user._id , reqBody.room_id , reqBody.msg_type],
 });
 
 router.post("/chat/post/messages", async (req, res) => {
+
   console.log(req.body);
 
   try {
